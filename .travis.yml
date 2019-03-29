@@ -1,9 +1,16 @@
+language: python
+python:
+  - "3.6"
+addons:
+  sonarcloud:
+    organization: thaedal-github
+    token:
+      secure: VhM7Ioe02cUKx++m6exp79LZY7oZZEeVCIxh018YYJ1dMBq9ZP8QNFeHNkLOdrxv4s4zfKhjbOFdjp88/Wkf6OA4Ht0bPZF/d19Hzf2G4ifcAeJIXFrv9ZxHfSDkBdx/cjvIEGezBeGfbiNTdJtLT12fM3lJa3XcC/gKUaqRJCekFwUV4xlLlnJSSnd9S5nNSjQLlrzV7MQ0Q53hWwtoT9kBF7yowC2XceO9kDH4v/z+y+hnzbQ1AFPOGygUHZpdrSgP8Y3CoFCkexcRq3HLyx+zzZkEx+X2fTvhra1N/7qSn2vodLv5jtmiU7a7lavgAaqXWa/Im163JUb89UH+ZEie/Ulmf5/121HnASR9MLUBF06bVXYPCVczMF+pwcMdgH9JiW7O9JgAcZDDr3eCbaLUOWJL+Zdo+WBr3LstlUVUadmyJB3/pzxw/+c28IDaKDj5CsuILTsWTENT3Btbh/BKe4AzZn7Xw9W70zUhQrMv4CEDGCxPCDwH2Ec/5mK8aJv2YKpJAKRn8lZ7kzB0fVu0jug4QrSYGpkP9/lZ98JV70pL5wt1tTEgXFTZuifyE4eVcl4VLArFa//TM3zQiv4xmGTMlCF0qxvHhPr3mGPZGS8JIjhEGjp+p6abs8qTyywuQsm7EXOCipBE2k8p1HKzfW/47tZ/s5/3bpx9U7I=
 services:
   - docker
-
 script:
+  - sonar-scanner
   - make release
-
 after_success:
   - docker images
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
